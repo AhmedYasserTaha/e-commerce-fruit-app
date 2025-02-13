@@ -25,7 +25,9 @@ class _SplashBodyState extends State<SplashBody>
         Tween<double>(begin: 0.2, end: 1).animate(animationController);
     animationController.repeat(reverse: true);
 
-    goToNextScreen();
+    Future.delayed(const Duration(seconds: 3), () {
+      Get.off(() => OnBordingScreen()); // ينقل للصفحة بدون زر الرجوع
+    });
   }
 
 // هنا استخدمنا  dispose عشان الانميشن ميفضلش شغال على الفاضي
@@ -55,7 +57,7 @@ class _SplashBodyState extends State<SplashBody>
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: textSize,
-                    fontFamily: "Poppins",
+                    // fontFamily: "Poppins",
                     color: Colors.white,
                   ),
                 ),
@@ -73,15 +75,6 @@ class _SplashBodyState extends State<SplashBody>
           ),
         ),
       ],
-    );
-  }
-
-  void goToNextScreen() {
-    Future.delayed(
-      Duration(seconds: 3),
-      () {
-        Get.to(() => OnBordingScreen(), transition: Transition.fade);
-      },
     );
   }
 }
