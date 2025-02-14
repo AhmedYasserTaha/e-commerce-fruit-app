@@ -1,9 +1,11 @@
 import 'package:e_commerce_app/core/utils/app_colors.dart';
 import 'package:e_commerce_app/core/utils/size_config.dart';
 import 'package:e_commerce_app/core/widgets/custom_widget_botton.dart';
+import 'package:e_commerce_app/features/auth/pages/login/login_view.dart';
 import 'package:e_commerce_app/features/onBording/presentaiosn/widget/coustom_dots_Indicator.dart';
 import 'package:e_commerce_app/features/onBording/presentaiosn/widget/coustom_page_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class OnBordingBody extends StatefulWidget {
   const OnBordingBody({super.key});
@@ -38,7 +40,7 @@ class _OnBordingBodyState extends State<OnBordingBody> {
         Positioned(
           left: 0,
           right: 0,
-          bottom: SizeConfig.defaultSize! * 20,
+          bottom: SizeConfig.defaultSize * 20,
           child: CoustomDotsIndicator(
             dontIndex: (pageController?.hasClients ?? false)
                 ? pageController!.page ?? 0
@@ -58,10 +60,21 @@ class _OnBordingBodyState extends State<OnBordingBody> {
           ),
         ),
         Positioned(
-          left: (SizeConfig.defaultSize ?? 10) * 10,
-          right: (SizeConfig.defaultSize ?? 10) * 10,
-          bottom: (SizeConfig.defaultSize ?? 10) * 10,
-          child: CustomWidgetButton(
+          left: (SizeConfig.defaultSize) * 10,
+          right: (SizeConfig.defaultSize) * 10,
+          bottom: (SizeConfig.defaultSize) * 10,
+          child: CustomGeneralButton(
+            onTap: () {
+              if (pageController!.page! < 2) {
+                pageController?.nextPage(
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.easeIn);
+              } else {
+                Get.to(() => LoginView(),
+                    transition: Transition.rightToLeft,
+                    duration: Duration(milliseconds: 500));
+              }
+            },
             text: (pageController?.hasClients ?? false) &&
                     (pageController?.page?.round() == 2)
                 ? "Get Started"

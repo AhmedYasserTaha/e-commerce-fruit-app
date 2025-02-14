@@ -5,4 +5,11 @@ class AppColors {
   static Color textColor = Color(0xff898989);
   static Color titleColor = Color(0xff2f2e41);
   static Color supTitleColor = Color(0xff78787c);
+  static Color brimColor = Color(0xff2C3E50);
 }
+
+// // ignore: camel_case_types
+// class ImagesAndIicons {
+//    String  logoMarket = "assets/images/logo.png";
+
+// }

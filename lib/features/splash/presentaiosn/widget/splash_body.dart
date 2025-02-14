@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/core/utils/app_colors.dart';
 import 'package:e_commerce_app/features/onBording/presentaiosn/on_bording_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class _SplashBodyState extends State<SplashBody>
         Tween<double>(begin: 0.2, end: 1).animate(animationController);
     animationController.repeat(reverse: true);
 
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 4), () {
       Get.off(() => OnBordingScreen()); // ينقل للصفحة بدون زر الرجوع
     });
   }
@@ -58,7 +59,8 @@ class _SplashBodyState extends State<SplashBody>
                     fontWeight: FontWeight.bold,
                     fontSize: textSize,
                     // fontFamily: "Poppins",
-                    color: Colors.white,
+                    // color: const Color.fromARGB(255, 0, 0, 0),
+                    color: AppColors.pColor,
                   ),
                 ),
               ),
@@ -70,10 +72,13 @@ class _SplashBodyState extends State<SplashBody>
         SizedBox(
           width: double.infinity,
           child: Image.asset(
-            "assets/images/splash_view_image.png",
+            "assets/images/processed-image.png",
             fit: BoxFit.cover, // عشان تملأ العرض بالكامل
           ),
         ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .05,
+        )
       ],
     );
   }
