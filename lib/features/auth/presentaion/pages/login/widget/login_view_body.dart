@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/core/utils/app_colors.dart';
 import 'package:e_commerce_app/core/utils/size_config.dart';
 import 'package:e_commerce_app/core/widgets/custom_widget_botton.dart';
+import 'package:e_commerce_app/features/auth/data/respotries/auth_repo_impl.dart';
 import 'package:e_commerce_app/features/auth/presentaion/pages/complet_information/complet_information_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -12,12 +13,12 @@ class LoginViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authRepo = AuthRepoImpl(); // كود تسجيل الدخول
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Spacer(),
-          // Gap(MediaQuery.of(context).size.height*.1)
           SizedBox(
             height: SizeConfig.defaultSize * 20,
             child: Image.asset("assets/images/logo.png"),
@@ -28,41 +29,51 @@ class LoginViewBody extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 50,
-              // fontFamily: "Poppins",
-              // color: const Color.fromARGB(255, 0, 0, 0),
               color: AppColors.pColor,
             ),
           ),
           Spacer(),
           Row(
             children: [
-              // حطينا هنا flexbleعشان تاخد عرض الاسكرين كلها
-              Flexible(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: CustomButtonWithIcon(
-                      text: "Login with",
-                      onTap: () {
-                        Get.to(() => CompletInformationView(),
-                            duration: Duration(milliseconds: 500),
-                            transition: Transition.rightToLeft);
-                      },
-                      iconData: FontAwesome.facebook,
-                      color: const Color.fromARGB(255, 54, 57, 244)),
-                ),
-              ),
-              // حطينا هنا flexbleعشان تاخد عرض الاسكرين كلها  بحيث تكون مساحه الازررا قد بعض
               Flexible(
                 flex: 1,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: CustomButtonWithIcon(
                     text: "Login with",
-                    onTap: () {
-                      Get.to(() => CompletInformationView(),
-                          duration: Duration(milliseconds: 500),
-                          transition: Transition.rightToLeft);
+                    onTap: () async {
+                      try {
+                        final userCredential =
+                            await authRepo.loginWitFacebook();
+                        if (userCredential != null) {
+                          Get.to(() => CompletInformationView());
+                        }
+                      } catch (e) {
+                        print("Facebook Login Error: $e");
+                      }
+                    },
+                    iconData: FontAwesome.facebook,
+                    color: const Color.fromARGB(255, 54, 57, 244),
+                  ),
+                ),
+              ),
+              Flexible(
+                flex: 1,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: CustomButtonWithIcon(
+                    text: "Login with",
+                    onTap: () async {
+                      try {
+                        final result = await authRepo.loginWithGoogel();
+                        result.fold(
+                          (error) => print("Google Login Error: $error"),
+                          (userCredential) =>
+                              Get.to(() => CompletInformationView()),
+                        );
+                      } catch (e) {
+                        print("Google Login Exception: $e");
+                      }
                     },
                     iconData: FontAwesome.google,
                     color: const Color.fromARGB(255, 255, 0, 0),
