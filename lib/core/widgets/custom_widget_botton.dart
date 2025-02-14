@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/core/utils/app_colors.dart';
-import 'package:e_commerce_app/core/utils/size_config.dart';
 import 'package:flutter/material.dart';
 
 class CustomGeneralButton extends StatelessWidget {
@@ -18,7 +17,8 @@ class CustomGeneralButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 60,
-        width: SizeConfig.screenWidth * 0.8, // عرض الزر يكون 80% من الشاشة
+        width: MediaQuery.of(context).size.width *
+            .8, // عرض الزر يكون 80% من الشاشة
         decoration: BoxDecoration(
           color: AppColors.pColor,
           borderRadius: BorderRadius.circular(12),

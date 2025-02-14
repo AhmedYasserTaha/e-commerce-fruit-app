@@ -1,8 +1,11 @@
 import 'package:e_commerce_app/core/utils/app_colors.dart';
 import 'package:e_commerce_app/core/utils/size_config.dart';
 import 'package:e_commerce_app/core/widgets/custom_widget_botton.dart';
+import 'package:e_commerce_app/features/auth/presentaion/pages/complet_information/complet_information_view.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:icons_flutter/icons_flutter.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -40,8 +43,12 @@ class LoginViewBody extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: CustomButtonWithIcon(
                       text: "Login with",
-                      onTap: () {},
-                      iconData: Icons.facebook,
+                      onTap: () {
+                        Get.to(() => CompletInformationView(),
+                            duration: Duration(milliseconds: 500),
+                            transition: Transition.rightToLeft);
+                      },
+                      iconData: FontAwesome.facebook,
                       color: const Color.fromARGB(255, 54, 57, 244)),
                 ),
               ),
@@ -51,10 +58,15 @@ class LoginViewBody extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: CustomButtonWithIcon(
-                      text: "Login with",
-                      onTap: () {},
-                      iconData: Icons.facebook,
-                      color: const Color.fromARGB(255, 54, 57, 244)),
+                    text: "Login with",
+                    onTap: () {
+                      Get.to(() => CompletInformationView(),
+                          duration: Duration(milliseconds: 500),
+                          transition: Transition.rightToLeft);
+                    },
+                    iconData: FontAwesome.google,
+                    color: const Color.fromARGB(255, 255, 0, 0),
+                  ),
                 ),
               )
             ],

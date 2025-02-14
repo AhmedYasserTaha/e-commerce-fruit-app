@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/core/utils/app_colors.dart';
 import 'package:e_commerce_app/core/utils/size_config.dart';
 import 'package:e_commerce_app/core/widgets/custom_widget_botton.dart';
-import 'package:e_commerce_app/features/auth/pages/login/login_view.dart';
+import 'package:e_commerce_app/features/auth/presentaion/pages/login/login_view.dart';
 import 'package:e_commerce_app/features/onBording/presentaiosn/widget/coustom_dots_Indicator.dart';
 import 'package:e_commerce_app/features/onBording/presentaiosn/widget/coustom_page_view.dart';
 import 'package:flutter/material.dart';
